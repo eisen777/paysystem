@@ -1,0 +1,24 @@
+
+Самостоятельное изучение:
+
+IDE
+    1. Изучить меню IntelliJ Idea
+        File - Settings
+        File - Project Structure
+
+Java Syntax
+    1. Изучить аннотации lombok и их значение
+    2. Тесты на основе Junit
+
+Самостоятельное задание:
+1. Переписать класс Client и ClientTest с использованием lombok.
+2. В классе PaySystemCore написать метод вывода всех клиентов,
+   переопределив в классе Client метод toString для отображения ФИО и списка счетов клиента.
+3. Описать интерфейс Person.
+4. Добавить инициализацию полной информации клиент-счета платежной системы в методе initPaySystemCore
+   класса PaySystemCoreTest.
+5. Доработать метод showAllAccounts в классе PaySystemCore на вывод счетов в возрастающем порядке по номеру
+6. Определить причину отрицательного результата прохождения теста showAllClientAccountsTest в классе PaySystemCoreTest
+7. Переписать пополнение счета в методе replenishAccount класса AccountProcessor в 1 строку.
+8. В классе AccountProcessor реализовать метод списания со счета writeOffAccount в соответствии с описанием.
+9. В классе AccountProcessor реализовать метод перевода средств между двумя счетами transferMoney в соответствии с описанием.
