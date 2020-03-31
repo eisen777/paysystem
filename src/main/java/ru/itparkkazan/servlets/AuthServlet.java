@@ -3,6 +3,7 @@ package ru.itparkkazan.servlets;
 import lombok.extern.slf4j.Slf4j;
 import ru.itparkkazan.beans.Client;
 import ru.itparkkazan.dao.ClientDAO;
+import ru.itparkkazan.enums.Page;
 import ru.itparkkazan.exceptions.UnregistredClientException;
 import ru.itparkkazan.sessions.SessionUtil;
 import ru.itparkkazan.utils.ClientCredentialsInfo;
@@ -17,7 +18,6 @@ import java.io.IOException;
 @Slf4j
 @WebServlet(name="auth", urlPatterns = "/auth")
 public class AuthServlet extends HttpServlet {
-    private static final String SUCCESS_AUTH_PAGE = "/views/successAuthClient.jsp";
 
     private String clientLogin;
     private String clientPsswd;
@@ -38,7 +38,7 @@ public class AuthServlet extends HttpServlet {
         }
         HttpSession httpSession = httpServletRequest.getSession();
         SessionUtil.fillSession(httpSession, client);
-        httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + SUCCESS_AUTH_PAGE);
+        httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + Page.SUCCESS_AUTH_PAGE.getPage());
     }
 
     private void readAuthCredentials(HttpServletRequest httpServletRequest) {
