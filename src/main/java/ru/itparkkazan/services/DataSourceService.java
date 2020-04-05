@@ -1,6 +1,7 @@
 package ru.itparkkazan.services;
 
 import lombok.extern.slf4j.Slf4j;
+import ru.itparkkazan.enums.DbProperty;
 import ru.itparkkazan.exceptions.DataSourceServiceException;
 import ru.itparkkazan.exceptions.PropertyReaderException;
 
@@ -10,13 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * Класс для работы с БД
+ */
 @Slf4j
 public class DataSourceService {
-
-    private static final String DRIVER_NAME_PROPERTY_NAME = "driver_name";
-    private static final String URL_PROPERTY_NAME = "url";
-    private static final String USER_PROPERTY_NAME = "user";
-    private static final String PSSWD_PROPERTY_NAME = "password";
 
     private Properties properties;
     private Connection connection;
@@ -34,13 +33,14 @@ public class DataSourceService {
 
     /**
      * Метод получения подключения к БД
+     *
      * @return подключение к БД
      */
     private Connection getConnection() throws DataSourceServiceException {
-        String driverName = properties.getProperty(DRIVER_NAME_PROPERTY_NAME);
-        String url = properties.getProperty(URL_PROPERTY_NAME);
-        String user = properties.getProperty(USER_PROPERTY_NAME);
-        String password = properties.getProperty(PSSWD_PROPERTY_NAME);
+        String driverName = properties.getProperty(DbProperty.DRIVER_NAME_PROPERTY_NAME.getProperty());
+        String url = properties.getProperty(DbProperty.URL_PROPERTY_NAME.getProperty());
+        String user = properties.getProperty(DbProperty.USER_PROPERTY_NAME.getProperty());
+        String password = properties.getProperty(DbProperty.PSSWD_PROPERTY_NAME.getProperty());
         try {
             Class.forName(driverName);
             return DriverManager.getConnection(url, user, password);
@@ -51,6 +51,13 @@ public class DataSourceService {
         }
     }
 
+    /**
+     * Метод получения подготовленного выражения для запроса
+     *
+     * @param query запрос
+     * @return подготовленное выражение для запроса
+     * @throws DataSourceServiceException исключение подключения к БД
+     */
     public PreparedStatement getPreparedStatement(String query) throws DataSourceServiceException {
         try {
             connection = getConnection();
@@ -70,6 +77,9 @@ public class DataSourceService {
         }
     }
 
+    /**
+     * Метод закрытия подключения
+     */
     public void closeConnection() {
         if (connection != null) {
             try {

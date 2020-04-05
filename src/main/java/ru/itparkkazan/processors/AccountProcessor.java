@@ -12,7 +12,8 @@ public class AccountProcessor {
 
     /**
      * Метод пополнения счета
-     * @param account счет
+     *
+     * @param account      счет
      * @param replenishSum сумма пополнения
      * @return флаг пополнения счета
      */
@@ -29,6 +30,12 @@ public class AccountProcessor {
         log.info(String.join(" ", "Пополнение счета", String.valueOf(account.getAccountNumber()), "прошло успешно. Текущая сумма на счете", String.valueOf(account.getSum())));
     }
 
+    /**
+     * Метоод списания со счета
+     *
+     * @param account     счет
+     * @param writeOffSum сумма списания
+     */
     //TODO релизовать метод списания со счета
     public static void writeOffAccount(Account account, int writeOffSum) {
         /*
@@ -40,6 +47,13 @@ public class AccountProcessor {
          */
     }
 
+    /**
+     * Метод перевода со счета на счет
+     *
+     * @param fromAccount исходный счет
+     * @param toAccount   целевой счет
+     * @param sum         сумма
+     */
     //TODO реализовать метод перевода с одного счета на другой
     public static void transferMoney(Account fromAccount, Account toAccount, int sum) {
         /*

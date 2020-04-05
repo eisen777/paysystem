@@ -1,11 +1,26 @@
 package ru.itparkkazan.dao;
 
-import ru.itparkkazan.beans.Client;
-import ru.itparkkazan.exceptions.UnregistredClientException;
-
+/**
+ * Обобщенный интерфейс для получения объекта из БД
+ *
+ * @param <T> обобщенный тип
+ */
 public interface DAO<T> {
+    /**
+     * Метод вставки информации в БД
+     *
+     * @param t обобщенный тип
+     */
     void insert(T t);
 
-    Client getClient(String lgn, String psswd) throws UnregistredClientException;
+    /**
+     * Метод получения информации из БД по 2 параметрам
+     *
+     * @param firstParam  первый параметр
+     * @param secondParam второй параметр
+     * @return обобщенный тип объекта
+     * @throws Exception ошибка при получении объекта из БД
+     */
+    T get(String firstParam, String secondParam) throws Exception;
 
 }

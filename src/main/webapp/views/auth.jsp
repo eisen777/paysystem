@@ -16,7 +16,7 @@
                         <label>Логин</label>
                     </td>
                     <td>
-                        <input type="text" name="login">
+                        <input id="authLogin" type="text" name="login">
                     </td>
                 </tr>
                 <tr>
@@ -29,32 +29,12 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input style="width: 100%" type="submit" value="Войти">
+                        <input id="authEnterButton" style="width: 100%" type="submit" value="Войти">
                     </td>
                 </tr>
             </table>
         </form>
     </div>
 </div>
-
-<%--<div style="width: 100%; height: 800px; vertical-align: bottom; background-color: brown">
-    <div align="center" style="width: 100%; height: 20%; background-color: gray">
-        <form id="clientAuthForm" action="../auth" method="post">
-            <div style="float: left; width: 40%; align-self: ">
-                <label>Логин</label>
-            </div>
-            <div>
-                <input type="text" name="login"/>
-            </div>
-            <div style="float: left">
-                <labe>Пароль</labe>
-            </div>
-            <div>
-                <input type="password" name="psswd"/>
-            </div>
-            <input type="submit" value="Войти"/>
-        </form>
-    </div>
-</div>--%>
 </body>
 </html>

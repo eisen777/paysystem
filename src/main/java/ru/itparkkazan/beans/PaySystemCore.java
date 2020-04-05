@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Класс для описания ядра платежной системы
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -17,6 +20,9 @@ public class PaySystemCore {
     private List<Person> paySystemClients;
     private Map<Client, List<Account>> paySystemClientAccounts;
 
+    /**
+     * Метод инициализации клиентов и их счетов
+     */
     private void initClientAccounts() {
         //TODO реализовать метод инициализации полной информации клиент-счета платежной системы
     }
@@ -33,6 +39,9 @@ public class PaySystemCore {
         System.out.println();
     }
 
+    /**
+     * Метод отображения всех клиентов
+     */
     public void showAllClients() {
         //TODO написать метод вывода всех клиентов,
         // переопределив в классе Client метод toString для отображения ФИО и списка счетов клиента.
@@ -41,7 +50,7 @@ public class PaySystemCore {
     /**
      * Метод вывода полной информации клиент-счета ядра платежной системы
      */
-    public void showAllClientAccounts(){
+    public void showAllClientAccounts() {
         for (Map.Entry<Client, List<Account>> entry : paySystemClientAccounts.entrySet()) {
             Client client = entry.getKey();
             System.out.println(client.getFullName());

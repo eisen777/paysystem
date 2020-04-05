@@ -1,13 +1,21 @@
 package ru.itparkkazan.exceptions;
 
 /**
- * Исключение связанный с некорректной суммой пополнения счета
+ * Исключение пополнения счета некорректной суммой
  */
 public class ReplenishException extends Exception {
 
     /**
-     * Конструктор с сообщением детали Exc
-     * @param message
+     * Конструктор без параметров
+     */
+    public ReplenishException() {
+        super();
+    }
+
+    /**
+     * Конструктор с информационным сообщением
+     *
+     * @param message информационное сообщение
      */
     public ReplenishException(String message) {
         super(message);

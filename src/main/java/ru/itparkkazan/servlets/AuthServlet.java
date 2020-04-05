@@ -3,32 +3,37 @@ package ru.itparkkazan.servlets;
 import lombok.extern.slf4j.Slf4j;
 import ru.itparkkazan.beans.Client;
 import ru.itparkkazan.dao.ClientDAO;
+import ru.itparkkazan.enums.ClientCredential;
 import ru.itparkkazan.enums.Page;
 import ru.itparkkazan.exceptions.UnregistredClientException;
-import ru.itparkkazan.sessions.SessionUtil;
-import ru.itparkkazan.utils.ClientCredentialsInfo;
+import ru.itparkkazan.utils.ServletUtil;
+import ru.itparkkazan.utils.SessionUtil;
 
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 
+/**
+ * Сервлет для аутентификации пользователя
+ */
 @Slf4j
 @WebServlet(name="auth", urlPatterns = "/auth")
 public class AuthServlet extends HttpServlet {
 
-    private String clientLogin;
-    private String clientPsswd;
-
+    /**
+     * Метод обработки POST-запроса
+     * @param httpServletRequest запрос
+     * @param httpServletResponse ответ
+     * @throws IOException ошибка перенаправления на другую страницу
+     */
     @Override
-    protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
-        readAuthCredentials(httpServletRequest);
+    protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+        String clientLogin = httpServletRequest.getParameter(ClientCredential.LOGIN.getClientCredential());
+        String clientPsswd = httpServletRequest.getParameter(ClientCredential.PSSWD.getClientCredential());
         ClientDAO clientDAO = new ClientDAO();
         Client client = null;
         try {
-            client = clientDAO.getClient(clientLogin, clientPsswd);
+            client = clientDAO.get(clientLogin, clientPsswd);
             if (client == null) {
                 //TODO Вывести на GUI предупреждение "Проблемы с БД, обратитесь к администратору"
             }
@@ -38,11 +43,6 @@ public class AuthServlet extends HttpServlet {
         }
         HttpSession httpSession = httpServletRequest.getSession();
         SessionUtil.fillSession(httpSession, client);
-        httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + Page.SUCCESS_AUTH_PAGE.getPage());
-    }
-
-    private void readAuthCredentials(HttpServletRequest httpServletRequest) {
-        clientLogin = httpServletRequest.getParameter(ClientCredentialsInfo.LOGIN);
-        clientPsswd = httpServletRequest.getParameter(ClientCredentialsInfo.PSSWD);
+        ServletUtil.redirectInsideServlet(httpServletRequest, httpServletResponse, Page.SUCCESS_AUTH_PAGE.getPage());
     }
 }

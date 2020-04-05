@@ -5,24 +5,35 @@ import ru.itparkkazan.beans.Client;
 import ru.itparkkazan.exceptions.DataSourceServiceException;
 import ru.itparkkazan.exceptions.UnregistredClientException;
 import ru.itparkkazan.services.DataSourceService;
-import ru.itparkkazan.utils.ClientCredentialsInfo;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Класс доступа к данным БД для клиента
+ */
 @Slf4j
 public class ClientDAO implements DAO<Client> {
 
+    /**
+     * SQL-запрос для вставки в БД информации о клиенте
+     */
     private static final String INSERT_INTO_CLIENT_LOGIN_PSWD_VALUES = "INSERT INTO PAYSYSTEM.PAYSYSTEM.CLIENT (LOGIN, PSWD, FIRSTNAME, SECONDNAME, SURNAME) VALUES (?,?,?,?,?)";
+    /**
+     * SQL-запрос для получения из БД информации о клиенте по логину и паролю
+     */
     private static final String SELECT_CLIENT_BY_LGN_AND_PSSWD = "SELECT * FROM PAYSYSTEM.PAYSYSTEM.CLIENT WHERE LOGIN = ? AND PSWD = ?";
 
-    private DataSourceService dataSourceService;
+    /**
+     * Поле класса для работы с БД
+     */
+    private DataSourceService dataSourceService = new DataSourceService();
 
-    public ClientDAO() {
-        dataSourceService = new DataSourceService();
-    }
-
+    /**
+     * Метод для вставки в БД информации о клиенте
+     * @param client объект клиент
+     */
     @Override
     public void insert(Client client) {
         try (PreparedStatement preparedStatement = dataSourceService.getPreparedStatement(INSERT_INTO_CLIENT_LOGIN_PSWD_VALUES)){
@@ -41,8 +52,15 @@ public class ClientDAO implements DAO<Client> {
         }
     }
 
+    /**
+     * Метод получения объекта клиента из БД по логину и паролю
+     * @param lgn логин
+     * @param psswd пароль
+     * @return объект клиента
+     * @throws UnregistredClientException исключение "Незарегистрированный клиент"
+     */
     @Override
-    public Client getClient(String lgn, String psswd) throws UnregistredClientException {
+    public Client get(String lgn, String psswd) throws UnregistredClientException {
         try (PreparedStatement preparedStatement = dataSourceService.getPreparedStatement(SELECT_CLIENT_BY_LGN_AND_PSSWD)) {
             preparedStatement.setString(1, lgn);
             preparedStatement.setString(2, psswd);

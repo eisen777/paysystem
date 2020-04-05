@@ -7,10 +7,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * Класс для считывания информации из property-файлов
+ */
 @Slf4j
 public class ReadPropertiesService {
-
-
+    /**
+     * Название файла для считывания информации о БД
+     */
     private static final String DATA_SOURCE_PROPERTY_PATH = "datasource.properties";
 
     /**
