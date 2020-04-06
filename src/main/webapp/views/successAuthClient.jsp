@@ -6,8 +6,7 @@
     <title>Аутентификация</title>
 </head>
 <body>
-<h1 align="center">Платежная система 1.0</h1>
-<div style="width: 100%; height: 800px; vertical-align: bottom">
+<jsp:include page="headers/index_header.jsp"/><div style="width: 100%; height: 800px; vertical-align: bottom">
     <div align="center" style="line-height: 100px; background-color: gray">
         <form id="clientSuccessAuthentificationForm" action="enterSystem.jsp" method="post">
             <label>Пользователь </label>

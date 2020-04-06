@@ -3,7 +3,6 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Аутентификация</title>
 </head>
 <body>
 <h1 align="center">Платежная система 1.0</h1>

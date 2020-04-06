@@ -2,6 +2,7 @@ package ru.itparkkazan.dao;
 
 import lombok.extern.slf4j.Slf4j;
 import ru.itparkkazan.beans.Client;
+import ru.itparkkazan.enums.ClientCredential;
 import ru.itparkkazan.exceptions.DataSourceServiceException;
 import ru.itparkkazan.exceptions.UnregistredClientException;
 import ru.itparkkazan.services.DataSourceService;
@@ -68,9 +69,9 @@ public class ClientDAO implements DAO<Client> {
             if (resultSet.next()) {
                 //TODO Добавить инициализацию с id
 //                int id = resultSet.getInt(ID);
-                String firstName = resultSet.getString(ClientCredentialsInfo.FIRST_NAME);
-                String secondName = resultSet.getString(ClientCredentialsInfo.SECOND_NAME);
-                String surname = resultSet.getString(ClientCredentialsInfo.SURNAME);
+                String firstName = resultSet.getString(ClientCredential.FIRST_NAME.getClientCredential());
+                String secondName = resultSet.getString(ClientCredential.SECOND_NAME.getClientCredential());
+                String surname = resultSet.getString(ClientCredential.SURNAME.getClientCredential());
                 return new Client(lgn, psswd, firstName, secondName, surname);
             } else {
                 throw new UnregistredClientException("Клиент с логином " + lgn + " отсутсвует.");

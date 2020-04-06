@@ -3,10 +3,10 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Страница входа</title>
+    <title>Система</title>
 </head>
 <body>
-<h1 align="center">Платежная система 1.0</h1>
+<jsp:include page="headers/system_header.jsp"/>
 <div style="width: 100%; line-height: 800px; vertical-align: bottom">
     <div align="center" style="background-color: gray">
         <label>Страница в разработке...</label>

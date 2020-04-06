@@ -6,7 +6,7 @@
     <title>Регистрация</title>
 </head>
 <body>
-<h1 align="center">Платежная система 1.0</h1>
+<jsp:include page="headers/index_header.jsp"/>
 <div style="width: 100%; line-height: 800px; vertical-align: bottom">
     <div align="center" style="background-color: gray">
         <form id="clientRegistrationForm" action="../regClient" method="post" >
