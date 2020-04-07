@@ -9,8 +9,6 @@ public class Client implements Person {
 
     //TODO переписать класс с использоваением аннотаций lombok
 
-    //TODO Добавить конструктор с id
-
     /**
      * Конструктор
      *
@@ -28,6 +26,19 @@ public class Client implements Person {
         this.surname = surname;
     }
 
+    public Client(int id, String login, String psswd, String firstname, String secondname, String surname) {
+        this.id = id;
+        this.login = login;
+        this.psswd = psswd;
+        this.firstname = firstname;
+        this.secondname = secondname;
+        this.surname = surname;
+    }
+
+    /**
+     * Идентификатор
+     */
+    private int id;
     /**
      * Логин
      */
@@ -52,6 +63,14 @@ public class Client implements Person {
      * Список счетов
      */
     private List<Account> clientAccounts;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     /**
      * Геттер логина

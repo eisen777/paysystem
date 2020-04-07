@@ -20,7 +20,7 @@ public class ClientDAO implements DAO<Client> {
     /**
      * SQL-запрос для вставки в БД информации о клиенте
      */
-    private static final String INSERT_INTO_CLIENT_LOGIN_PSWD_VALUES = "INSERT INTO PAYSYSTEM.PAYSYSTEM.CLIENT (LOGIN, PSWD, FIRSTNAME, SECONDNAME, SURNAME) VALUES (?,?,?,?,?)";
+    private static final String INSERT_INTO_CLIENT_VALUES = "INSERT INTO PAYSYSTEM.PAYSYSTEM.CLIENT (LOGIN, PSWD, FIRSTNAME, SECONDNAME, SURNAME) VALUES (?,?,?,?,?)";
     /**
      * SQL-запрос для получения из БД информации о клиенте по логину и паролю
      */
@@ -37,7 +37,7 @@ public class ClientDAO implements DAO<Client> {
      */
     @Override
     public void insert(Client client) {
-        try (PreparedStatement preparedStatement = dataSourceService.getPreparedStatement(INSERT_INTO_CLIENT_LOGIN_PSWD_VALUES)){
+        try (PreparedStatement preparedStatement = dataSourceService.getPreparedStatement(INSERT_INTO_CLIENT_VALUES)){
             preparedStatement.setString(1, client.getLogin());
             preparedStatement.setString(2, client.getPsswd());
             preparedStatement.setString(3, client.getFirstname());
@@ -47,7 +47,7 @@ public class ClientDAO implements DAO<Client> {
         } catch (DataSourceServiceException e) {
             log.error("Ошибка подключения к БД при попытке вставки записи с данными клиента", e);
         } catch (SQLException e) {
-            log.error("Ошибка запроса при попытке вставки записи с данными клиента " + INSERT_INTO_CLIENT_LOGIN_PSWD_VALUES, e);
+            log.error("Ошибка запроса при попытке вставки записи с данными клиента " + INSERT_INTO_CLIENT_VALUES, e);
         } finally {
             dataSourceService.closeConnection();
         }
